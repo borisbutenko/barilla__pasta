@@ -44,7 +44,7 @@ const cleanPath = {
     libs : `${dirs.to}libs/**/*`,
     img  : `${dirs.to}img/**/*`,
     fonts: `${dirs.to}fonts/**/*`,
-    html : `${dirs.to}*.html`
+    html : `../client/*.html`
 };
 
 gulp.task('clean', function() {
@@ -177,7 +177,7 @@ gulp.task('fonts', function() {
  */
 const pugPath = {
     from : `${dirs.from}pug/**/*`,
-    to   : `${dirs.to}`
+    to   : `../client/`
 };
 
 gulp.task('pug', function () {
