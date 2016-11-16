@@ -17,7 +17,7 @@ import del          from 'del';
 
 const dirs = {
     from : './assets/',
-    to   : '../build/assets/'
+    to   : '../client/assets/'
 };
 
 /**
