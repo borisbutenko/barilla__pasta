@@ -63,7 +63,7 @@ gulp.task('clean', function() {
  */
 gulp.task('watch', function() {
     gulp.watch(pugPath.from, ['pug']);
-    gulp.watch(stylPath.from, ['stylus']);
+    gulp.watch(stylPath.watch, ['stylus']);
     gulp.watch(scriptsPath.from, ['scripts']);
 });
 
@@ -71,7 +71,11 @@ gulp.task('watch', function() {
  * Compile css files
  */
 const stylPath = {
-    from : `${dirs.from}styl/**/*`,
+    watch: `${dirs.from}styl/**/*`,
+    from : [
+        `${dirs.from}styl/normalize.styl`,
+        `${dirs.from}styl/base.styl`
+    ],
     to   : `${dirs.to}css/`
 };
 
@@ -91,7 +95,7 @@ gulp.task('stylus', () => {
             browsers: ['last 2 versions', 'Firefox 49', 'Opera 41', 'ie 11', 'iOS 10', 'Safari 10']
         }))
         .pipe(csso())
-        .pipe(concat('style.css'))
+        .pipe(concat('main.min.css'))
         .pipe(gulp.dest(stylPath.to))
         .pipe(notify({ message: 'Css task complete' }));
 });
@@ -176,7 +180,7 @@ gulp.task('fonts', function() {
  * Compile pug files
  */
 const pugPath = {
-    from : `${dirs.from}pug/**/*`,
+    from : `${dirs.from}pug/index.pug`,
     to   : `../client/`
 };
 

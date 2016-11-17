@@ -1,0 +1,29 @@
+*
+  margin: 0
+
+html,
+body
+  height: 100%
+
+.wrapper
+  min-height: 100%
+  margin-bottom: -6.2rem
+  &::after
+    content: ''
+    display: flex
+
+.footer,
+.wrapper::after
+  height: 6.2rem
+
+.footer
+  background: #fff
+  padding-top: 2.7rem
+  padding-bottom: 1.9rem
+  & span
+    font-size: 1.3rem
+    margin-right: 1.5rem
+  &__layout
+    justify-content: space-between
+  &__social
+    display: inline-flex
