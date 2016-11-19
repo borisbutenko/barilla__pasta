@@ -35,7 +35,11 @@
             }
 
             updateScrollOptions(value, className) {
-                if ( ~className.indexOf('timeline__img') ) return false;
+
+                if ( ~className.indexOf('timeline__img') ) {
+                    this.count = 0;
+                    return false;
+                }
 
                 let position = $(window).scrollTop();
 

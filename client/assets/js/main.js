@@ -41,7 +41,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _createClass(Scroller, [{
                 key: 'updateScrollOptions',
                 value: function updateScrollOptions(value, className) {
-                    if (~className.indexOf('timeline__img')) return false;
+
+                    if (~className.indexOf('timeline__img')) {
+                        this.count = 0;
+                        return false;
+                    }
 
                     var position = $(window).scrollTop();
 
@@ -57,7 +61,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                         if (position >= 1480 && value > 0) $('a[href*=main__timeline]').trigger('click');
 
-                        if (position >= 1990 && value < 0) $('a[href*=main__test]').trigger('click');
+                        if (position >= 1950 && value < 0) $('a[href*=main__test]').trigger('click');
 
                         this.count = 0;
 
@@ -152,6 +156,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Image animation => section main__test
          */
+        setTimeout(function () {
+            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
+        }, 200);
+
         function animateSectionTest() {
             $('.main__test-image2').animate({
                 opacity: 1,
@@ -177,6 +185,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Image animation => section main__timeline
          */
+        setTimeout(function () {
+            if ($(window).scrollTop() >= 1950) animateSectionPromo();
+        }, 200);
+
         function animateSectionPromo() {
             $('.main__timeline-image1').animate({
                 opacity: 1,
