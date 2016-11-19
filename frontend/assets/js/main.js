@@ -36,9 +36,13 @@
 
             updateScrollOptions(value, className) {
 
-                if ( ~className.indexOf('timeline__img') ) {
-                    this.count = 0;
-                    return false;
+                if ( ~className.indexOf('timeline__img')
+                    || ~className.indexOf('line__next')
+                    || ~className.indexOf('line__circle')
+                    || ~className.indexOf('line__up')
+                    || className === 'line' ) {
+                        this.count = 0;
+                        return false;
                 }
 
                 let position = $(window).scrollTop();
@@ -89,6 +93,7 @@
         let scroller = new Scroller(0);
 
         window.onwheel = function (e) {
+            console.log(e.target.className);
             scroller.updateScrollOptions(e.deltaY, e.target.className)
         };
 

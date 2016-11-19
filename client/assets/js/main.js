@@ -42,7 +42,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 key: 'updateScrollOptions',
                 value: function updateScrollOptions(value, className) {
 
-                    if (~className.indexOf('timeline__img')) {
+                    if (~className.indexOf('timeline__img') || ~className.indexOf('line__next') || ~className.indexOf('line__circle') || ~className.indexOf('line__up') || className === 'line') {
                         this.count = 0;
                         return false;
                     }
@@ -86,6 +86,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var scroller = new Scroller(0);
 
         window.onwheel = function (e) {
+            console.log(e.target.className);
             scroller.updateScrollOptions(e.deltaY, e.target.className);
         };
 
