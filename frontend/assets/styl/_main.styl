@@ -7,6 +7,7 @@
 
 body
   min-width: 118rem
+  overflow: hidden
 
 .link
   display: inline-flex
@@ -69,7 +70,6 @@ body
     background-size: 100%
   &__zigzag
     position: relative
-    z-index: 500
     width: 100%
     height: 4.6rem
     margin-top: -2.6rem
@@ -426,13 +426,14 @@ body
   left: 0
   z-index: 900
   width: 20rem
-  height: 100%
+  height: 200rem
+  animation: mapImage 3s ease-in-out infinite
   &-item1
     z-index: 10
-    background: url(../img/parralax__left1.png) no-repeat 10rem 55rem
+    background: url(../img/parralax__left1.png) no-repeat 10rem 65rem
   &-item2
     z-index: 5
-    background: url(../img/parralax__left2.png) no-repeat -15rem 50rem
+    background: url(../img/parralax__left2.png) no-repeat -15rem 80rem
   &-item3
     background: url(../img/parralax__left3.png) no-repeat 0 180rem
   &-item4
@@ -443,18 +444,26 @@ body
     height: 100%
     background-size: 50%
 
-.parallax__animate {
-  animation: parallaxAnimate 1.5s
-}
-
-@keyframes parallaxAnimate {
-  from {
-    transform: translateY(0)
-  }
-  50% {
-    transform: translateY(-1.5rem)
-  }
-  to {
-    transform: translateY(0)
-  }
-}
+.parallax__right
+  position: absolute
+  top: 0
+  right: 0
+  z-index: 900
+  width: 20rem
+  height: 200rem
+  animation: mapImage 3s ease-in-out infinite
+  &-item1
+    z-index: 5
+    background: url(../img/parralax__right1.png) no-repeat 8rem 65rem
+  &-item2
+    z-index: 10
+    background: url(../img/parralax__right2.png) no-repeat 0 75rem
+  &-item3
+    background: url(../img/parralax__right3.png) no-repeat 0 120rem
+    margin-right: 8rem
+  &-item4
+    background: url(../img/parralax__right4.png) no-repeat 10rem 180rem
+    margin-right: 8rem
+  &-item5
+    background: url(../img/parralax__right5.png) no-repeat 0 110rem
+    margin-right: 5rem
