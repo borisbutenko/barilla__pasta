@@ -161,9 +161,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, 200);
 
         function animateSectionTest() {
+            var w = $(window).width(),
+                left = w < 2000 ? '-35.8rem' : '-0.3rem',
+                right = w < 2000 ? '-48rem' : '0';
+
             $('.main__test-image2').animate({
                 opacity: 1,
-                left: '-1.8rem'
+                left: left
             }, 800, function () {
                 $('.main__test-image1, .main__test-image3').animate({
                     opacity: 1
@@ -172,7 +176,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             $('.main__test-image5').animate({
                 opacity: 1,
-                right: 0
+                right: right
             }, 800, function () {
                 $('.main__test-image4').animate({
                     opacity: 1
@@ -190,6 +194,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, 200);
 
         function animateSectionPromo() {
+
             $('.main__timeline-image1').animate({
                 opacity: 1,
                 left: '3rem'
