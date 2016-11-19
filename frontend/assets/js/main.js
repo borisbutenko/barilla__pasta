@@ -57,7 +57,7 @@
                     if ( position >= 1480 && value > 0 )
                         $('a[href*=main__timeline]').trigger('click');
 
-                    if ( position >= 1990 && value < 0 )
+                    if ( position >= 1950 && value < 0 )
                         $('a[href*=main__test]').trigger('click');
 
                     this.count = 0;
@@ -177,6 +177,11 @@
         /**
          * Image animation => section main__test
          */
+        setTimeout(() => {
+            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
+                animateSectionTest();
+        }, 200);
+
         function animateSectionTest() {
             $('.main__test-image2').animate({
                 opacity: 1,
@@ -202,6 +207,11 @@
         /**
          * Image animation => section main__timeline
          */
+        setTimeout(() => {
+            if ( $(window).scrollTop() >= 1950 )
+                animateSectionPromo();
+        }, 200);
+
         function animateSectionPromo() {
             $('.main__timeline-image1').animate({
                 opacity: 1,
