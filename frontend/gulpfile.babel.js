@@ -4,6 +4,7 @@
  * Import modules
  */
 import gulp         from 'gulp';
+import babel        from 'gulp-babel';
 import stylus       from 'gulp-stylus';
 import autoprefixer from 'gulp-autoprefixer';
 import csso         from 'gulp-csso';
@@ -26,14 +27,23 @@ const dirs = {
 gulp.task('default',
     [
         'watch',
-        'clean',
-        'imagemin',
-        'fonts',
-        'libs',
+        // 'clean',
+        // 'imagemin',
+        // 'fonts',
+        // 'libs',
         'scripts',
         'stylus',
         'pug'
     ]);
+
+/**
+ * Watcher. Rerun the task when a file changes
+ */
+gulp.task('watch', () => {
+    gulp.watch(pugPath.watch, ['pug']);
+    gulp.watch(stylPath.watch, ['stylus']);
+    gulp.watch(scriptsPath.from, ['scripts']);
+});
 
 /**
  * Clean assets in build directory
@@ -47,7 +57,7 @@ const cleanPath = {
     html : `../client/*.html`
 };
 
-gulp.task('clean', function() {
+gulp.task('clean', () => {
     return del([
         cleanPath.css,
         cleanPath.js,
@@ -59,21 +69,11 @@ gulp.task('clean', function() {
 });
 
 /**
- * Watcher. Rerun the task when a file changes
- */
-gulp.task('watch', function() {
-    gulp.watch(pugPath.from, ['pug']);
-    gulp.watch(stylPath.watch, ['stylus']);
-    gulp.watch(scriptsPath.from, ['scripts']);
-});
-
-/**
  * Compile css files
  */
 const stylPath = {
     watch: `${dirs.from}styl/**/*`,
     from : [
-        `${dirs.from}styl/normalize.styl`,
         `${dirs.from}styl/base.styl`
     ],
     to   : `${dirs.to}css/`
@@ -108,7 +108,7 @@ const imgPath = {
     to   : `${dirs.to}img/`
 };
 
-gulp.task('imagemin', function () {
+gulp.task('imagemin', () => {
     del([cleanPath.img], {force: true});
 
     return gulp.src(imgPath.from)
@@ -120,8 +120,9 @@ gulp.task('imagemin', function () {
             interlaced: true
         }))
         .pipe(gulp.dest(imgPath.to))
-        .pipe(notify({ message: 'Imagemin task complete' }));
 });
+
+[1,2,3].map(n => n + 1);
 
 /**
  * Build libs
@@ -131,7 +132,7 @@ const libsPath = {
     to   : `${dirs.to}libs/`
 };
 
-gulp.task('libs', function() {
+gulp.task('libs', () => {
     del([cleanPath.libs], {force: true});
 
     return gulp.src(libsPath.from)
@@ -147,16 +148,23 @@ gulp.task('libs', function() {
  * Compile JavaScript files
  */
 const scriptsPath = {
-    from : `${dirs.from}js/**/*`,
+    from : `${dirs.from}js/**/*.js`,
     to   : `${dirs.to}js/`
 };
 
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
     return gulp.src(scriptsPath.from)
+        .pipe(babel({
+            presets: ['es2015'],
+        }))
         .pipe(concat('main.js'))
         .pipe(gulp.dest(scriptsPath.to))
         .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
+        .pipe(babel({
+            minified: true,
+            compact: true,
+            comments: false
+        }))
         .pipe(gulp.dest(scriptsPath.to))
         .pipe(notify({ message: 'Scripts task complete' }));
 });
@@ -169,7 +177,7 @@ const fontsPath = {
     to   : `${dirs.to}fonts/`
 };
 
-gulp.task('fonts', function() {
+gulp.task('fonts', () => {
     del([cleanPath.fonts], {force: true});
 
     return gulp.src(fontsPath.from)
@@ -181,10 +189,11 @@ gulp.task('fonts', function() {
  */
 const pugPath = {
     from : `${dirs.from}pug/index.pug`,
-    to   : `../client/`
+    to   : `../client/`,
+    watch: `${dirs.from}pug/**/*`
 };
 
-gulp.task('pug', function () {
+gulp.task('pug', () => {
     del([cleanPath.html], {force: true});
 
     return gulp.src(pugPath.from)

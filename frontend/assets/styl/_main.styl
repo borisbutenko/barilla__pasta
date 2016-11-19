@@ -5,9 +5,18 @@
   &::after
     box-sizing: border-box
 
-a
+body
+  min-width: 118rem
+
+.link
+  display: inline-flex
   color: #000
   text-decoration: none
+  cursor: pointer
+  &:active,
+  &:hover,
+  &:focus
+    text-decoration: none
 
 .text
   font-weight: lighter
@@ -31,11 +40,12 @@ a
     text-align: right
   &__dark-blue
     color: #0e447e
+  &__red
+    color: #ff252c
 
 .wrapper
   width: 100%
-  background: #d2e0e8 url(../img/main__bcg.jpg) no-repeat top center
-  background-size: cover
+  background-color: #d2e0e8
 
 .layout
   width: 100%
@@ -43,35 +53,346 @@ a
   padding: 0 4rem
   &__center
     justify-content: center
+  &__p0
+    padding: 0
 
 .main
+  position: relative
+  & > section:first-child
+    padding-top: 11rem
   &__head
-    background-image: linear-gradient(13deg, #f1efde 52%, transparent 52.2%)
+    padding-bottom: 5.2rem
+    background:
+            linear-gradient(12.8deg,#f1efde 39.2%,transparent 39.4%),
+            url(../img/main__bcg.jpg) no-repeat top center
+    background-size: 100%
   &__zigzag
+    position: relative
+    z-index: 500
     width: 100%
     height: 4.6rem
     margin-top: -2.6rem
-    background: url(../img/main__zigzag.png) no-repeat center
+    margin-bottom: -1.1rem
+    background: url(../img/main__zigzag.png) no-repeat left center
   &__title
     display: inline-flex
     flex-flow: column
-    margin-top: 1rem
+    &-image
+      margin-top: 1rem
+      margin-bottom: 1.5rem
+      position: relative
+      top: -.4rem
+      left: -.3rem
     & > span
-      &:first-child
-        font-size: 2.2rem
-        letter-spacing: .3rem
       &:nth-of-type(2)
         font-size: 8rem
         letter-spacing: .35rem
       &:last-child
         font-size: 9rem
-        letter-spacing: .1rem
-        margin-top: -4rem
-  &__bow-tie
-    margin-top: 1rem
-    margin-bottom: 1.5rem
+        letter-spacing: .6rem
+        line-height: 2rem
+  &__headline
+    font-size: 2.2rem
+    letter-spacing: .3rem
+    position: relative
+    top: -.5rem
+    left: -.1rem
+  &__frame
+    position: relative
+    flex-grow: 1
+    margin-top: 18.3rem
   &__description
     font-size: 1.7rem
     letter-spacing: -.005rem
     line-height: 2.6rem
     max-width: 60rem
+    margin-top: 4.1rem
+
+  &__article
+    padding: 8.2rem 0 15rem
+    &-item
+      margin-top: 2.3rem
+      max-width: 36rem
+      padding: 3rem 2rem 3rem 5.5rem
+      flex-flow: column
+      border-right: .1rem solid rgba(255,255,255,.5)
+      &:last-child
+        border-right: none
+    &-title
+      font-size: 1.1rem
+      letter-spacing: .1rem
+    &-content
+      font-size: 2.2rem
+      line-height: 2.4rem
+      letter-spacing: .07rem
+      margin-top: .5rem
+      margin-bottom: 2rem
+    &-more
+      display: inline-table
+      margin-top: auto
+      font-size: 1.55rem
+      border-bottom: .1rem solid #0e447e
+      line-height: 1.2rem
+      transition: color .1s
+      &:hover
+        color: #c31313
+
+  &__test
+    padding: 11.5rem 0 12.6rem
+    background-color: #f1efde
+    position: relative
+    & > .layout
+      position: relative
+      z-index: 1100
+    &-image
+      width: 100%
+      height: 61.8rem
+      top: -3.6rem
+      left: 0
+      position: absolute
+      z-index: 1000
+      overflow: hidden
+      & > img
+        position: absolute
+    &-image1
+      top: 23rem
+      left: 22.7rem
+      opacity: 0
+      z-index: 1
+    &-image2
+      //left: -1.8rem
+      left: -52.5rem
+      opacity: 0
+      z-index: 2
+    &-image3
+      top: -.4rem
+      left: 0
+      opacity: 0
+      z-index: 3
+    &-image4
+      top: 8rem
+      right: 0
+      opacity: 0
+      z-index: 4
+    &-image5
+      top: 8rem
+      //right: 0
+      right: -38rem
+      opacity: 0
+      z-index: 5
+    &-container
+      display: inline-flex
+      flex-flow: column
+      & .main__caption
+        display: inline-flex
+        flex-flow: column
+      & .main__title-image
+        top: -1rem
+        margin-bottom: 2.5rem
+    &-button
+      display: table
+      color: #fff
+      font-size: 1.7rem
+      background: #0e447e radial-gradient(circle at 80% 50%, rgba(255,255,255,0.3), transparent)
+      padding: .3rem 6.8rem 0
+      line-height: 5.2rem
+      margin-top: 8.3rem
+      align-self: center
+      position: relative
+      left: -.2rem
+      &:active,
+      &:hover,
+      &:focus
+        color: #fff
+        background: #0e447e
+
+  &__timeline
+    padding: 8.5rem 0 4rem
+    & .main__title-image
+      margin-top: .5rem
+      margin-bottom: 3rem
+    & .main__title > span:last-child
+      font-size: 5rem
+      letter-spacing: .1rem
+
+.timeline
+  width: 83%
+  margin-right: 0
+  margin-top: 8rem
+  &__container
+    height: 100%
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+  &__item
+    display: flex
+    flex-flow: column
+    text-align: center
+    cursor: pointer
+    height: 45rem
+    padding-bottom: 5.5rem
+    &:first-child .line .line__next
+      margin-left: 50%
+    &:last-child .line .line__next
+      margin-right: 50%
+  &__img
+    max-height: 30rem
+    position: absolute
+    opacity: 0
+    transition: opacity .3s
+  &__hover
+    opacity: 1
+  &__text
+    font-size: 2.4rem
+    margin-top: 1rem
+    z-index: 100
+    & > span
+      width: 19.1rem
+      height: 2.9rem
+      display: inline-block
+      line-height: 3.2rem
+      background: url(../img/timeline__title.png) no-repeat 0
+      transition: all .3s
+    & > span.timeline__text-hover
+      color: #fff
+      background: url(../img/timeline__title-hover.png) no-repeat 0
+      opacity: 1
+
+.line
+  &__up
+    width: .1rem
+    height: 6rem
+    border-left: 1px solid #0e447e
+    margin-left: 50%
+  &__circle
+    width: 1.7rem
+    height: 1.7rem
+    border: .55rem solid #0e447e
+    border-radius: 50%
+    margin-left: 50%
+    position: relative
+    left: -.8rem
+    z-index: 10
+    background: #fff
+  &__next
+    height: .1rem
+    border-top: .25rem solid #0e447e
+    position: relative
+    top: -.95rem
+
+.map
+  position: relative
+  left: -4.5rem
+  flex-grow: 1
+  width: 116.5rem
+  max-width: 116.5rem
+  height: 30rem
+  background: url(../img/main__map-cloth.png) no-repeat -.5rem top
+  background-size: 117rem
+  &__item
+    position: absolute
+    width: 18.5rem
+    height: 10rem
+    & > img:first-child
+      animation: mapImage 3s ease-in-out infinite
+  &__heading
+    width: 100%
+    color: #ff252c
+    position: absolute
+    z-index: 100
+    opacity: 0
+    & > span
+      display: table
+      line-height: 1.2rem
+      margin-bottom: .5rem
+      font-size: 1.4rem
+      border-bottom: .1rem dotted #ff252c
+  &__image
+    position: relative
+    z-index: 100
+    &:hover ~ .map__marker
+      transition: z-index .2s
+      z-index: 150
+  &__marker
+    display: inline-block
+    position: absolute
+    width: 2.6rem
+    height: 3.8rem
+    background: url(../img/map__marker.png) no-repeat
+    z-index: 50
+    &:hover
+      background: url(../img/map__marker-hover.png) no-repeat
+      background-position-x: .1rem
+      z-index: 150
+      & + .map__heading
+        transition: all .2s
+  &__bow-pie
+    top: 10.9rem
+    left: 32.2rem
+    & > .map__marker
+      top: 4.8rem
+      left: 8.6rem
+      &:hover + .map__heading
+        opacity: 1
+        top: 1.6rem
+        left: 10.4rem
+    & .map__image-shadow
+      top: -.5rem
+      left: 1rem
+      z-index: 90
+  &__mask
+    top: 4.9rem
+    left: 49.8rem
+    & > .map__marker
+      top: 4.7rem
+      left: 8.4rem
+      &:hover + .map__heading
+        opacity: 1
+        top: 1.4rem
+        left: 9.7rem
+    & .map__image-shadow
+      top: .4rem
+      left: .4rem
+      z-index: 90
+  &__pasta
+    width: 23rem
+    top: 13.8rem
+    left: 65.9rem
+    & > .map__marker
+      top: 2.9rem
+      left: 12.6rem
+      &:hover + .map__heading
+        opacity: 1
+        top: 1rem
+        left: 11.5rem
+    & .map__image-shadow
+      top: -2rem
+      z-index: 90
+  &__bag
+    width: 19.5rem
+    height: 15rem
+    top: 3.2rem
+    left: 83.2rem
+    & > .map__marker
+      top: 7.7rem
+      left: 13.4rem
+      &:hover + .map__heading
+        opacity: 1
+        top: 6.1rem
+        left: 14.3rem
+    & .map__image-shadow
+      top: -6rem
+      z-index: 90
+
+@keyframes mapImage {
+  from {
+    transform: translateY(0)
+  }
+  50% {
+    transform: translateY(-.5rem)
+  }
+  to {
+    transform: translateY(0)
+  }
+}
