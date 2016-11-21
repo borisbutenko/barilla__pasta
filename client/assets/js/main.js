@@ -9,6 +9,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     $(function () {
 
         /**
+         * Show main title
+         */
+        $('.main__title').addClass('main__title-active');
+
+        /**
          * Left menu click && Page scroller
          */
         $('nav.menu-left, .map').on('click', '[data-scroll]', function (event) {
@@ -22,73 +27,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (target == '#main__test' || target == '#main__article') top -= 50;
             if (target == '#main__timeline') top += 50;
 
-            $('body,html').stop(true).animate({
+            $('body').stop(true).animate({
                 scrollTop: top
-            }, 1500, function () {
+            }, 5000, function () {
                 if (func != '') eval(func);
             });
 
             return false;
         });
-
-        var Scroller = function () {
-            function Scroller(value) {
-                _classCallCheck(this, Scroller);
-
-                this.count = value;
-            }
-
-            _createClass(Scroller, [{
-                key: 'updateScrollOptions',
-                value: function updateScrollOptions(value, className) {
-
-                    if (~className.indexOf('timeline__img') || ~className.indexOf('line__next') || ~className.indexOf('line__circle') || ~className.indexOf('line__up') || className === 'line') {
-                        this.count = 0;
-                        return false;
-                    }
-
-                    var position = $(window).scrollTop();
-
-                    if (value > 0 && this.count >= value * 3 || value < 0 && this.count <= value * 3) {
-
-                        if (position >= 0 && value > 0) $('a[href*=main__article]').trigger('click');
-
-                        if (position >= 950 && value < 0) $('a[href*=main__head]').trigger('click');
-
-                        if (position >= 950 && value > 0) $('a[href*=main__test]').trigger('click');
-
-                        if (position >= 1480 && value < 0) $('a[href*=main__article]').trigger('click');
-
-                        if (position >= 1480 && value > 0) $('a[href*=main__timeline]').trigger('click');
-
-                        if (position >= 1950 && value < 0) $('a[href*=main__test]').trigger('click');
-
-                        this.count = 0;
-
-                        return false;
-                    }
-
-                    this.count += value;
-                }
-            }]);
-
-            return Scroller;
-        }();
-
-        function scroll(top, func) {
-            if (func) $('body,html').animate({
-                scrollTop: top
-            }, 1500, func);else $('body,html').animate({
-                scrollTop: top
-            }, 1500);
-        }
-
-        var scroller = new Scroller(0);
-
-        window.onwheel = function (e) {
-            console.log(e.target.className);
-            scroller.updateScrollOptions(e.deltaY, e.target.className);
-        };
 
         /**
          * Tooltips
@@ -127,6 +73,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         window.onscroll = function () {
             parallaxScroll();
+            if ($(window).scrollTop() >= 1950) animateSectionPromo();
+            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
+        };
+
+        var Scrolled = function () {
+            function Scrolled(value) {
+                _classCallCheck(this, Scrolled);
+
+                this.top = value;
+            }
+
+            _createClass(Scrolled, [{
+                key: 'scrolled',
+                value: function scrolled(move, target) {
+                    if ($(target).parents('.timeline').length) return false;
+                    if (this.top <= 0) this.top = 0;
+
+                    this.top += move > 0 ? 100 : -100;
+
+                    $('body').stop().animate({
+                        scrollTop: this.top
+                    }, 300);
+                }
+            }]);
+
+            return Scrolled;
+        }();
+
+        window.onwheel = function (e) {
+            new Scrolled($(window).scrollTop()).scrolled(e.deltaY, e.target);
+            return false;
         };
 
         function parallaxScroll() {
