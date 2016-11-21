@@ -7,7 +7,7 @@
 
 body
   min-width: 118rem
-  overflow: hidden
+  //overflow: hidden
 
 .link
   display: inline-flex
@@ -78,6 +78,8 @@ body
   &__title
     display: inline-flex
     flex-flow: column
+    transition: opacity 1.5s
+    opacity: 0
     &-image
       margin-top: 1rem
       margin-bottom: 1.5rem
@@ -92,6 +94,8 @@ body
         font-size: 9rem
         letter-spacing: .6rem
         line-height: 2rem
+  &__title-active
+    opacity: 1
   &__headline
     font-size: 2.2rem
     letter-spacing: .3rem
@@ -207,11 +211,24 @@ body
       align-self: center
       position: relative
       left: -.2rem
+      & > span
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        line-height: 5.8rem
+        text-align: center
+        font-size: 1.7rem
+        background: #0e447e
+        opacity: 0
+        transition: all .3s
       &:active,
       &:hover,
       &:focus
         color: #fff
-        background: #0e447e
+      &:hover > span
+          opacity: 1
 
   &__timeline
     position: relative
@@ -219,7 +236,7 @@ body
     margin-bottom: 4rem
     &-image
       width: 100%
-      height: 100%
+      height: 80%
       left: 0
       position: absolute
       overflow: hidden
@@ -416,17 +433,21 @@ body
       top: -6rem
       z-index: 90
 
-@keyframes mapImage {
-  from {
+@keyframes mapImage
+  from
     transform: translateY(0)
-  }
-  50% {
+  50%
     transform: translateY(-.5rem)
-  }
-  to {
+  to
     transform: translateY(0)
-  }
-}
+
+@keyframes btnHover
+  from
+    background: #0e447e radial-gradient(circle at 80% 50%, rgba(255,255,255,0.3), transparent)
+  50%
+    background: #0e447e radial-gradient(circle at 130% 30%, rgba(255,255,255,0.3), transparent)
+  to
+    background: #0e447e radial-gradient(circle at 180% 10%, rgba(255,255,255,0.3), transparent)
 
 .parallax__left
   position: absolute

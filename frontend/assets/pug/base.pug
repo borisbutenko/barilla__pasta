@@ -1,13 +1,13 @@
 doctype html
-html(lang='en')
+html(lang='en' data-scroll-speed='1')
   head
     meta(charset='utf-8')
     meta(name="description" content="")
     meta(name="keywords" content="")
     title Barilla Pasta
-    include assets/styles
-    include assets/scripts
-  body
+    include __assets/styles
+    include __assets/scripts
+  body(data-scroll-speed='5')
     include __blocks/menu__main-left
     .wrapper
       include __blocks/header
