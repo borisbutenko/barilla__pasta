@@ -13,6 +13,7 @@ import notify       from 'gulp-notify';
 import imagemin     from 'gulp-imagemin';
 import rename       from 'gulp-rename';
 import uglify       from 'gulp-uglify';
+import htmlmin      from 'gulp-htmlmin';
 import pug          from 'gulp-pug';
 import del          from 'del';
 
@@ -200,6 +201,9 @@ gulp.task('pug', () => {
         .pipe(pug({
             basedir: '../',
             pretty: true
+        }))
+        .pipe(htmlmin({
+            collapseWhitespace: true
         }))
         .pipe(gulp.dest(pugPath.to))
         .pipe(notify({ message: 'Pug task complete' }));

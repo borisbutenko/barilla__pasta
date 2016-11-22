@@ -92,7 +92,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     this.top += move > 0 ? 100 : -100;
 
-                    $('body').stop().animate({
+                    $('html, body').stop().animate({
                         scrollTop: this.top
                     }, 300);
                 }
@@ -102,8 +102,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }();
 
         window.onwheel = function (e) {
-            new Scrolled($(window).scrollTop()).scrolled(e.deltaY, e.target);
-            return false;
+            $('html, body').stop();
+            /*
+             new Scrolled( $(window).scrollTop() ).scrolled(e.deltaY, e.target);
+             return false;
+             */
         };
 
         function parallaxScroll() {

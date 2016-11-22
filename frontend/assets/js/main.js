@@ -92,7 +92,7 @@
 
                 this.top += ( move > 0 ) ? 100 : -100;
 
-                $('body')
+                $('html, body')
                     .stop()
                     .animate({
                         scrollTop: this.top
@@ -101,8 +101,11 @@
         }
 
         window.onwheel = function(e) {
-            new Scrolled( $(window).scrollTop() ).scrolled(e.deltaY, e.target);
-            return false;
+            $('html, body').stop();
+            /*
+             new Scrolled( $(window).scrollTop() ).scrolled(e.deltaY, e.target);
+             return false;
+             */
         };
 
         function parallaxScroll() {
