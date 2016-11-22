@@ -132,7 +132,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Appearance sections on scroll / load
          */
-        $('#main__head > .appearance').addClass('appearance__active');
+        appearance($(window).scrollTop());
 
         $(window).on('scroll', function () {
             appearance($(window).scrollTop());
@@ -153,11 +153,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
          * Image animation => section main__test
          */
         $(window).on('scroll', function () {
-            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
+            var scrolled = $(window).scrollTop(),
+                target$ = $('#main__test'),
+                top = target$.offset().top - $(window).height();
+
+            if (scrolled >= top) animateSectionTest();
         });
 
         setTimeout(function () {
-            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
+            var scrolled = $(window).scrollTop(),
+                target$ = $('#main__test'),
+                top = target$.offset().top - $(window).height();
+
+            if (scrolled >= top) animateSectionTest();
         }, 200);
 
         function animateSectionTest() {
@@ -190,11 +198,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
          * Image animation => section main__timeline
          */
         $(window).on('scroll', function () {
-            if ($(window).scrollTop() >= 1950) animateSectionPromo();
+            var scrolled = $(window).scrollTop(),
+                target$ = $('#main__timeline'),
+                top = target$.offset().top - $(window).height();
+
+            if (scrolled >= top) animateSectionPromo();
         });
 
         setTimeout(function () {
-            if ($(window).scrollTop() >= 1950) animateSectionPromo();
+            var scrolled = $(window).scrollTop(),
+                target$ = $('#main__timeline'),
+                top = target$.offset().top - $(window).height();
+
+            if (scrolled >= top) animateSectionPromo();
         }, 200);
 
         function animateSectionPromo() {

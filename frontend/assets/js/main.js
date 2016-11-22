@@ -146,7 +146,7 @@
         /**
          * Appearance sections on scroll / load
          */
-        $('#main__head > .appearance').addClass('appearance__active');
+        appearance($(window).scrollTop());
 
         $(window).on('scroll', () => {
             appearance($(window).scrollTop());
@@ -167,13 +167,19 @@
          * Image animation => section main__test
          */
         $(window).on('scroll', () => {
-            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
-                animateSectionTest();
+            let scrolled = $(window).scrollTop(),
+                target$ = $('#main__test'),
+                top = target$.offset().top - $(window).height();
+
+            if ( scrolled >= top ) animateSectionTest();
         });
 
         setTimeout(() => {
-            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
-                animateSectionTest();
+            let scrolled = $(window).scrollTop(),
+                target$ = $('#main__test'),
+                top = target$.offset().top - $(window).height();
+
+            if ( scrolled >= top ) animateSectionTest();
         }, 200);
 
         function animateSectionTest() {
@@ -206,13 +212,19 @@
          * Image animation => section main__timeline
          */
         $(window).on('scroll', () => {
-            if ( $(window).scrollTop() >= 1950 )
-                animateSectionPromo();
+            let scrolled = $(window).scrollTop(),
+                target$ = $('#main__timeline'),
+                top = target$.offset().top - $(window).height();
+
+            if ( scrolled >= top ) animateSectionPromo();
         });
 
         setTimeout(() => {
-            if ( $(window).scrollTop() >= 1950 )
-                animateSectionPromo();
+            let scrolled = $(window).scrollTop(),
+                target$ = $('#main__timeline'),
+                top = target$.offset().top - $(window).height();
+
+            if ( scrolled >= top ) animateSectionPromo();
         }, 200);
 
         function animateSectionPromo() {
