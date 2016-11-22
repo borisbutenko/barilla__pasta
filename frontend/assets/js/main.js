@@ -5,11 +5,6 @@
     $(() => {
 
         /**
-         * Show main title
-         */
-        $('.main__title').addClass('main__title-active');
-
-        /**
          * Left menu click && Page scroller
          */
         $('nav.menu-left, .map').on('click', '[data-scroll]', function (event) {
@@ -73,40 +68,7 @@
          */
         parallaxScroll();
 
-        window.onscroll = function () {
-            parallaxScroll();
-            if ( $(window).scrollTop() >= 1950 )
-                animateSectionPromo();
-            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
-                animateSectionTest();
-        };
-
-        class Scrolled {
-            constructor(value) {
-                this.top = value;
-            }
-
-            scrolled(move, target) {
-                if ( $(target).parents('.timeline').length ) return false;
-                if ( this.top <= 0 ) this.top = 0;
-
-                this.top += ( move > 0 ) ? 100 : -100;
-
-                $('html, body')
-                    .stop()
-                    .animate({
-                        scrollTop: this.top
-                    }, 300);
-            }
-        }
-
-        window.onwheel = function(e) {
-            $('html, body').stop();
-            /*
-             new Scrolled( $(window).scrollTop() ).scrolled(e.deltaY, e.target);
-             return false;
-             */
-        };
+        $(window).on('scroll', parallaxScroll);
 
         function parallaxScroll() {
             let scrolled = $(window).scrollTop();
@@ -152,8 +114,63 @@
         }
 
         /**
+         * Scroll speed
+         */
+        class Scrolled {
+            constructor(value) {
+                this.top = value;
+            }
+
+            scrolled(move, target) {
+                if ( $(target).parents('.timeline').length ) return false;
+                if ( this.top <= 0 ) this.top = 0;
+
+                this.top += ( move > 0 ) ? 100 : -100;
+
+                $('html, body')
+                    .stop()
+                    .animate({
+                        scrollTop: this.top
+                    }, 300);
+            }
+        }
+
+        window.onwheel = function(e) {
+            $('html, body').stop();
+            /*
+             new Scrolled( $(window).scrollTop() ).scrolled(e.deltaY, e.target);
+             return false;
+             */
+        };
+
+        /**
+         * Appearance sections on scroll / load
+         */
+        $('#main__head > .appearance').addClass('appearance__active');
+
+        $(window).on('scroll', () => {
+            appearance($(window).scrollTop());
+        });
+
+        function appearance(scrolled) {
+            let target$ = $('.appearance');
+
+            target$.each(function() {
+                let self$ = $(this),
+                    top = self$.offset().top - $(window).height();
+
+                if ( scrolled >= top ) self$.addClass('appearance__active');
+            });
+        }
+
+        /**
          * Image animation => section main__test
          */
+        $(window).on('scroll', () => {
+            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
+                animateSectionTest();
+        });
+
         setTimeout(() => {
             if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
                 animateSectionTest();
@@ -188,6 +205,11 @@
         /**
          * Image animation => section main__timeline
          */
+        $(window).on('scroll', () => {
+            if ( $(window).scrollTop() >= 1950 )
+                animateSectionPromo();
+        });
+
         setTimeout(() => {
             if ( $(window).scrollTop() >= 1950 )
                 animateSectionPromo();

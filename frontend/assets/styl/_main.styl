@@ -56,8 +56,12 @@ body
   &__p0
     padding: 0
 
+
+
 .main
   position: relative
+  transition: opacity .5s
+  opacity: 1
   & > section:first-child
     padding-top: 11rem
   &__head
@@ -77,8 +81,6 @@ body
   &__title
     display: inline-flex
     flex-flow: column
-    transition: opacity 1.5s
-    opacity: 0
     &-image
       margin-top: 1rem
       margin-bottom: 1.5rem
@@ -93,8 +95,6 @@ body
         font-size: 9rem
         letter-spacing: .6rem
         line-height: 2rem
-  &__title-active
-    opacity: 1
   &__headline
     font-size: 2.2rem
     letter-spacing: .3rem
@@ -432,22 +432,6 @@ body
       top: -6rem
       z-index: 90
 
-@keyframes mapImage
-  from
-    transform: translateY(0)
-  50%
-    transform: translateY(-.5rem)
-  to
-    transform: translateY(0)
-
-@keyframes btnHover
-  from
-    background: #0e447e radial-gradient(circle at 80% 50%, rgba(255,255,255,0.3), transparent)
-  50%
-    background: #0e447e radial-gradient(circle at 130% 30%, rgba(255,255,255,0.3), transparent)
-  to
-    background: #0e447e radial-gradient(circle at 180% 10%, rgba(255,255,255,0.3), transparent)
-
 .parallax__left
   position: absolute
   top: 0
@@ -523,3 +507,27 @@ body
     @media screen and (min-width: 2000px)
       background-position-y: 100rem
       background-size: 20%
+
+.appearance
+  opacity: 0
+  transform: translateY(5rem)
+  transition: all 1.5s
+  &__active
+    opacity: 1
+    transform: translateY(0rem)
+
+@keyframes mapImage
+  from
+    transform: translateY(0)
+  50%
+    transform: translateY(-.5rem)
+  to
+    transform: translateY(0)
+
+@keyframes btnHover
+  from
+    background: #0e447e radial-gradient(circle at 80% 50%, rgba(255,255,255,0.3), transparent)
+  50%
+    background: #0e447e radial-gradient(circle at 130% 30%, rgba(255,255,255,0.3), transparent)
+  to
+    background: #0e447e radial-gradient(circle at 180% 10%, rgba(255,255,255,0.3), transparent)

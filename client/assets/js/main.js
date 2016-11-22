@@ -9,11 +9,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     $(function () {
 
         /**
-         * Show main title
-         */
-        $('.main__title').addClass('main__title-active');
-
-        /**
          * Left menu click && Page scroller
          */
         $('nav.menu-left, .map').on('click', '[data-scroll]', function (event) {
@@ -71,11 +66,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
          */
         parallaxScroll();
 
-        window.onscroll = function () {
-            parallaxScroll();
-            if ($(window).scrollTop() >= 1950) animateSectionPromo();
-            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
-        };
+        $(window).on('scroll', parallaxScroll);
+
+        function parallaxScroll() {
+            var scrolled = $(window).scrollTop();
+
+            $('.parallax__left-item1').css('top', 0 - scrolled * .15 + 'px');
+
+            $('.parallax__left-item2').css('top', 0 - scrolled * .50 + 'px');
+
+            if (scrolled > 600) {
+                $('.parallax__left-item3').css('top', 0 - scrolled * .45 + 'px');
+                $('.parallax__left-item4').css('top', 0 - scrolled * .65 + 'px');
+            }
+
+            $('.parallax__right-item1').css('top', 0 - scrolled * .35 + 'px');
+
+            $('.parallax__right-item2').css('top', 0 - scrolled * .80 + 'px');
+
+            $('.parallax__right-item3').css('top', 0 - scrolled * .30 + 'px');
+
+            $('.parallax__right-item4').css('top', 0 - scrolled * .5 + 'px');
+
+            $('.parallax__right-item5').css('top', scrolled * .28 + 'px');
+
+            return false;
+        }
+
+        /**
+         * Scroll speed
+         */
 
         var Scrolled = function () {
             function Scrolled(value) {
@@ -109,34 +129,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
              */
         };
 
-        function parallaxScroll() {
-            var scrolled = $(window).scrollTop();
+        /**
+         * Appearance sections on scroll / load
+         */
+        $('#main__head > .appearance').addClass('appearance__active');
 
-            $('.parallax__left-item1').css('top', 0 - scrolled * .15 + 'px');
+        $(window).on('scroll', function () {
+            appearance($(window).scrollTop());
+        });
 
-            $('.parallax__left-item2').css('top', 0 - scrolled * .50 + 'px');
+        function appearance(scrolled) {
+            var target$ = $('.appearance');
 
-            if (scrolled > 600) {
-                $('.parallax__left-item3').css('top', 0 - scrolled * .45 + 'px');
-                $('.parallax__left-item4').css('top', 0 - scrolled * .65 + 'px');
-            }
+            target$.each(function () {
+                var self$ = $(this),
+                    top = self$.offset().top - $(window).height();
 
-            $('.parallax__right-item1').css('top', 0 - scrolled * .35 + 'px');
-
-            $('.parallax__right-item2').css('top', 0 - scrolled * .80 + 'px');
-
-            $('.parallax__right-item3').css('top', 0 - scrolled * .30 + 'px');
-
-            $('.parallax__right-item4').css('top', 0 - scrolled * .5 + 'px');
-
-            $('.parallax__right-item5').css('top', scrolled * .28 + 'px');
-
-            return false;
+                if (scrolled >= top) self$.addClass('appearance__active');
+            });
         }
 
         /**
          * Image animation => section main__test
          */
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
+        });
+
         setTimeout(function () {
             if ($(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550) animateSectionTest();
         }, 200);
@@ -170,6 +189,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Image animation => section main__timeline
          */
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() >= 1950) animateSectionPromo();
+        });
+
         setTimeout(function () {
             if ($(window).scrollTop() >= 1950) animateSectionPromo();
         }, 200);
