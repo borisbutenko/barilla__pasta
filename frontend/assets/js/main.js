@@ -167,19 +167,13 @@
          * Image animation => section main__test
          */
         $(window).on('scroll', () => {
-            let scrolled = $(window).scrollTop(),
-                target$ = $('#main__test'),
-                top = target$.offset().top - $(window).height();
-
-            if ( scrolled >= top ) animateSectionTest();
+            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
+                animateSectionTest();
         });
 
         setTimeout(() => {
-            let scrolled = $(window).scrollTop(),
-                target$ = $('#main__test'),
-                top = target$.offset().top - $(window).height();
-
-            if ( scrolled >= top ) animateSectionTest();
+            if ( $(window).scrollTop() >= 1450 && $(window).scrollTop() <= 1550 )
+                animateSectionTest();
         }, 200);
 
         function animateSectionTest() {
@@ -212,19 +206,13 @@
          * Image animation => section main__timeline
          */
         $(window).on('scroll', () => {
-            let scrolled = $(window).scrollTop(),
-                target$ = $('#main__timeline'),
-                top = target$.offset().top - $(window).height();
-
-            if ( scrolled >= top ) animateSectionPromo();
+            if ( $(window).scrollTop() >= 1950 )
+                animateSectionPromo();
         });
 
         setTimeout(() => {
-            let scrolled = $(window).scrollTop(),
-                target$ = $('#main__timeline'),
-                top = target$.offset().top - $(window).height();
-
-            if ( scrolled >= top ) animateSectionPromo();
+            if ( $(window).scrollTop() >= 1950 )
+                animateSectionPromo();
         }, 200);
 
         function animateSectionPromo() {
