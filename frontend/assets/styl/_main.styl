@@ -68,7 +68,7 @@ body
     position: relative
     padding-bottom: 5.2rem
     background:
-            linear-gradient(12.8deg,#f1efde 39.2%,transparent 39.4%),
+            linear-gradient(12.8deg,#f1efde 36.2%,transparent 36.4%),
             url(../img/main__bcg.jpg) no-repeat top center
     background-size: 100%
   &__zigzag
@@ -114,7 +114,23 @@ body
     padding-left: .9rem
 
   &__article
+    position: relative
     padding: 8.2rem 0 15rem
+    &-text
+      font-size: 1.3rem
+      text-align: right
+      color: #fff
+      margin-top: -1.2rem
+      left: -9rem
+      padding-right: 3rem
+      position: absolute
+      width: 19.1rem
+      height: 2.9rem
+      display: inline-block
+      line-height: 3.2rem
+      background: url(../img/timeline__title-hover.png) no-repeat 0
+      & > b
+        font-size: 1.32rem
     &-item
       margin-top: 2.3rem
       max-width: 36rem
@@ -448,16 +464,17 @@ body
     background: url(../img/parralax__left1.png) no-repeat 10rem 65rem
   &-item2
     z-index: 5
-    background: url(../img/parralax__left2.png) no-repeat -15rem 80rem
+    background: url(../img/parralax__left2.png) no-repeat -15rem -10rem
     @media screen and (min-width: 2000px)
       background-position-x: 22rem
   &-item3
-    z-index: 1100
-    background: url(../img/parralax__left3.png) no-repeat 0 180rem
+    z-index: 1105
+    background: url(../img/parralax__left3.png) no-repeat 5rem
     @media screen and (min-width: 2000px)
       background-position-x: 25rem
   &-item4
-    background: url(../img/parralax__left4.png) no-repeat 6rem 180rem
+    z-index: 1100
+    background: url(../img/parralax__left4.png) no-repeat 0 65rem
     @media screen and (min-width: 2000px)
       background-position-x: 14rem
   & > *
@@ -472,32 +489,32 @@ body
   right: 0
   z-index: 900
   width: 25rem
-  height: 185rem
   animation: mapImage 3s ease-in-out infinite
   @media screen and (min-width: 2000px)
     width: 50rem
   &-item1
+    height: 120rem
     z-index: 5
     background: url(../img/parralax__right1.png) no-repeat 8rem 65rem
     @media screen and (min-width: 2000px)
       background-position-x: 25rem
   &-item2
+    height: 120rem
     z-index: 10
     background: url(../img/parralax__right2.png) no-repeat 0 75rem
     @media screen and (min-width: 2000px)
       background-position-y: 90rem
   &-item3
-    background: url(../img/parralax__right3.png) no-repeat -1rem 120rem
-    margin-right: 10rem
-    @media screen and (min-width: 2000px)
-      background-position-x: 15rem
+    height: 70rem
+    background: url(../img/parralax__right3.png) no-repeat -1rem
+    margin-right: 5rem
   &-item4
-    background: url(../img/parralax__right4.png) no-repeat 10rem 175rem
+    height: 100rem
+    background: url(../img/parralax__right4.png) no-repeat 12rem 85rem
     margin-right: 8rem
   &-item5
-    background: url(../img/parralax__right5.png) no-repeat 0 110rem
-    @media screen and (min-width: 2000px)
-      background-position-y: 100rem
+    height: 70rem
+    background: url(../img/parralax__right5.png) no-repeat no-repeat 0 10rem
 
 .appearance
   opacity: 0

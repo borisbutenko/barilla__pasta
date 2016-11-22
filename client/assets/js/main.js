@@ -43,9 +43,8 @@
          */
         {
             var timeline = new Swiper('.main__timeline .swiper-container', {
-                slidesPerView: $(window).width() < 2000 ? 3.5 : 4.5,
+                slidesPerView: $(window).width() < 2000 ? 4 : 5,
                 paginationClickable: true,
-                // keyboardControl: true,
                 mousewheelControl: true
             });
         }
@@ -74,8 +73,8 @@
             $('.parallax__left-item2').css('top', 0 - scrolled * .50 + 'px');
 
             if (scrolled > 600) {
-                $('.parallax__left-item3').css('top', 0 - scrolled * .45 + 'px');
-                $('.parallax__left-item4').css('top', 0 - scrolled * .65 + 'px');
+                $('.parallax__left-item3').css('top', 0 - scrolled * .60 + 'px');
+                $('.parallax__left-item4').css('top', 0 - scrolled * .45 + 'px');
             }
 
             $('.parallax__right-item1').css('top', 0 - scrolled * .35 + 'px');
