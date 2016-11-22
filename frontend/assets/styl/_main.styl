@@ -259,6 +259,7 @@ body
   width: 83%
   margin-right: 0
   margin-top: 8rem
+  z-index: 9999
   &__container
     height: 100%
     display: flex
@@ -445,23 +446,20 @@ body
   &-item1
     z-index: 10
     background: url(../img/parralax__left1.png) no-repeat 10rem 65rem
-    @media screen and (min-width: 2000px)
-      background-size: 25%
   &-item2
     z-index: 5
     background: url(../img/parralax__left2.png) no-repeat -15rem 80rem
     @media screen and (min-width: 2000px)
       background-position-x: 22rem
   &-item3
+    z-index: 1100
     background: url(../img/parralax__left3.png) no-repeat 0 180rem
     @media screen and (min-width: 2000px)
       background-position-x: 25rem
-      background-size: 40%
   &-item4
     background: url(../img/parralax__left4.png) no-repeat 6rem 180rem
     @media screen and (min-width: 2000px)
       background-position-x: 14rem
-      background-size: 30%
   & > *
     position: absolute
     width: 100%
@@ -473,8 +471,8 @@ body
   top: 0
   right: 0
   z-index: 900
-  width: 20rem
-  height: 200rem
+  width: 25rem
+  height: 180rem
   animation: mapImage 3s ease-in-out infinite
   @media screen and (min-width: 2000px)
     width: 50rem
@@ -483,30 +481,23 @@ body
     background: url(../img/parralax__right1.png) no-repeat 8rem 65rem
     @media screen and (min-width: 2000px)
       background-position-x: 25rem
-      background-size: 30%
   &-item2
     z-index: 10
     background: url(../img/parralax__right2.png) no-repeat 0 75rem
     @media screen and (min-width: 2000px)
       background-position-y: 90rem
-      background-size: 40%
   &-item3
-    background: url(../img/parralax__right3.png) no-repeat 0 120rem
-    margin-right: 8rem
+    background: url(../img/parralax__right3.png) no-repeat -1rem 120rem
+    margin-right: 10rem
     @media screen and (min-width: 2000px)
       background-position-x: 15rem
-      background-size: 60%
   &-item4
     background: url(../img/parralax__right4.png) no-repeat 10rem 180rem
     margin-right: 8rem
-    @media screen and (min-width: 2000px)
-      background-size: 50%
   &-item5
     background: url(../img/parralax__right5.png) no-repeat 0 110rem
-    margin-right: 5rem
     @media screen and (min-width: 2000px)
       background-position-y: 100rem
-      background-size: 20%
 
 .appearance
   opacity: 0

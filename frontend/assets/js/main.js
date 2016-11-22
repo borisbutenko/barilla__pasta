@@ -43,13 +43,15 @@
         /**
          * Timeline with swiper
          */
-        let timeline = new Swiper ('.main__timeline .swiper-container', {
-            slidesPerView: 3.5,
-            paginationClickable: true,
-            // keyboardControl: true,
-            mousewheelControl: true,
-            // freeMode: true
-        });
+        {
+            let timeline = new Swiper('.main__timeline .swiper-container', {
+                    slidesPerView: ( $(window).width() < 2000 ) ? 3.5 : 4.5,
+                    paginationClickable: true,
+                    // keyboardControl: true,
+                    mousewheelControl: true,
+                    // freeMode: true
+            });
+        }
 
         /**
          * Timeline hover
@@ -116,6 +118,7 @@
         /**
          * Scroll speed
          */
+        /*
         class Scrolled {
             constructor(value) {
                 this.top = value;
@@ -134,6 +137,7 @@
                     }, 300);
             }
         }
+        */
 
         window.onwheel = function(e) {
             $('html, body').stop();
@@ -216,15 +220,18 @@
         }, 200);
 
         function animateSectionPromo() {
+            let w = $(window).width(),
+                left = ( w < 2000 ) ? '3rem' : '20rem',
+                right = ( w < 2000 ) ? '2.5rem' : '55rem';
 
             $('.main__timeline-image1').animate({
                 opacity: 1,
-                left: '3rem'
+                left: left
             }, 800);
 
             $('.main__timeline-image2').animate({
                 opacity: 1,
-                right: '2.5rem'
+                right: right
             }, 800);
 
             return false;
