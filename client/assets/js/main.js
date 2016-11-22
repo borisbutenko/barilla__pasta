@@ -1,9 +1,5 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 (function ($) {
 
     $(function () {
@@ -45,12 +41,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Timeline with swiper
          */
-        var timeline = new Swiper('.main__timeline .swiper-container', {
-            slidesPerView: 3.5,
-            paginationClickable: true,
-            // keyboardControl: true,
-            mousewheelControl: true
-        });
+        {
+            var timeline = new Swiper('.main__timeline .swiper-container', {
+                slidesPerView: $(window).width() < 2000 ? 3.5 : 4.5,
+                paginationClickable: true,
+                // keyboardControl: true,
+                mousewheelControl: true
+            });
+        }
 
         /**
          * Timeline hover
@@ -96,30 +94,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /**
          * Scroll speed
          */
-
-        var Scrolled = function () {
-            function Scrolled(value) {
-                _classCallCheck(this, Scrolled);
-
+        /*
+        class Scrolled {
+            constructor(value) {
                 this.top = value;
             }
-
-            _createClass(Scrolled, [{
-                key: 'scrolled',
-                value: function scrolled(move, target) {
-                    if ($(target).parents('.timeline').length) return false;
-                    if (this.top <= 0) this.top = 0;
-
-                    this.top += move > 0 ? 100 : -100;
-
-                    $('html, body').stop().animate({
+             scrolled(move, target) {
+                if ( $(target).parents('.timeline').length ) return false;
+                if ( this.top <= 0 ) this.top = 0;
+                 this.top += ( move > 0 ) ? 100 : -100;
+                 $('html, body')
+                    .stop()
+                    .animate({
                         scrollTop: this.top
                     }, 300);
-                }
-            }]);
-
-            return Scrolled;
-        }();
+            }
+        }
+        */
 
         window.onwheel = function (e) {
             $('html, body').stop();
@@ -198,15 +189,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, 200);
 
         function animateSectionPromo() {
+            var w = $(window).width(),
+                left = w < 2000 ? '3rem' : '20rem',
+                right = w < 2000 ? '2.5rem' : '55rem';
 
             $('.main__timeline-image1').animate({
                 opacity: 1,
-                left: '3rem'
+                left: left
             }, 800);
 
             $('.main__timeline-image2').animate({
                 opacity: 1,
-                right: '2.5rem'
+                right: right
             }, 800);
 
             return false;
